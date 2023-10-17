@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ProductsList from "./products-list";
 import axios from "axios";
 
 
@@ -26,36 +25,12 @@ export default class BuscadorDeProductos extends Component {
         
         console.log(this.productsList)
   }
-        generarOptions() {
-          console.log(this.productsList)
-          this.productsList.map(i=>{
-           
-            return i
-           
-            
-        })}
-           
-             
-                    
-         
-        
-      
-    
-      
- 
-      
-        
-  
-
- 
-
-
+       
+          
   render(){
-    this.getProductsList();
-    this.generarOptions();
-   
-  
+    this.getProductsList()
 
+  
     return(
       <div>
         
@@ -65,24 +40,23 @@ export default class BuscadorDeProductos extends Component {
     <input type="submit" value="Buscar"/>
     </form>
     <datalist id="Products">
-     {<option value="Pollo"></option>}
-     {<option value={this.generarOptions()}></option>}
-    {this.generarOptions()}
-  
-    
-
-    
-
-   
-
+      {this.productsList.map(i=>{
+        this.options.push(<option value={i}></option>)
+        return this.options})}
+      {this.options.map(i=>{
+        return <option value={this.options[i]}></option>
+      })
+       
+    }
       
     </datalist>
     </div>
     )
-    }
+  }
+}
     
   
-  }
+  
 
 
   
