@@ -1,0 +1,88 @@
+import React, { Component } from "react";
+import ProductsList from "./products-list";
+import axios from "axios";
+
+
+export default class BuscadorDeProductos extends Component {
+  constructor() {
+    super()
+    this.data=[];
+    this.productsList=[];
+    this.options=[];
+  }
+
+  getProductsList() {
+
+    axios
+      .get("http://localhost:3300/productosdeSupermercados")
+      .then(response => {
+        
+         this.data= response.data
+         this.data.map(product=>{
+          this.productsList.push(product.name) })
+          return this.productsList
+        })
+       
+        
+        console.log(this.productsList)
+  }
+        generarOptions() {
+          console.log(this.productsList)
+          this.productsList.map(i=>{
+           
+            return i
+           
+            
+        })}
+           
+             
+                    
+         
+        
+      
+    
+      
+ 
+      
+        
+  
+
+ 
+
+
+  render(){
+    this.getProductsList();
+    this.generarOptions();
+   
+  
+
+    return(
+      <div>
+        
+        <form>
+    <input type='text'name="buscadorProductos" list="Products"></input>
+   
+    <input type="submit" value="Buscar"/>
+    </form>
+    <datalist id="Products">
+     {<option value="Pollo"></option>}
+     {<option value={this.generarOptions()}></option>}
+    {this.generarOptions()}
+  
+    
+
+    
+
+   
+
+      
+    </datalist>
+    </div>
+    )
+    }
+    
+  
+  }
+
+
+  
